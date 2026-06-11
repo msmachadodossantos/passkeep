@@ -1,2 +1,0 @@
-console.log(new class{routes;constructor(e){this.routes=e}executeHandler(e,s){return`Successfully resolved path "${e}" with variables: ${JSON.stringify(s)}`}}(["/api/v1/user/:userId/profile","/api/v1/posts/:postId/comments/:commentId"]).executeHandler("/api/v1/posts/:postId/comments/:commentId",{postId:"101",commentId:"202"}));
-//# sourceMappingURL=test.js.map
