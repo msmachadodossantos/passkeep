@@ -1,0 +1,210 @@
+<link rel="stylesheet" href="asset/css/colors.css">
+
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Cores - Primitive Tokens</title>
+    <link rel="stylesheet" href="asset/css/colors.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--neutral-100);
+            color: var(--neutral-900);
+            margin: 0;
+            padding: 2rem;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--neutral-200);
+            padding-bottom: 1rem;
+        }
+
+        h1 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-900);
+        }
+
+        h2 {
+            margin: 2rem 0 1rem 0;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
+            color: var(--neutral-700);
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-swatch {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            height: 120px;
+        }
+
+        .color-display {
+            flex-grow: 1;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .text-dark {
+            color: var(--monochrome-900);
+        }
+
+        .text-light {
+            color: var(--monochrome-100);
+        }
+    </style>
+</head>
+
+<body class="">
+
+    <header>
+        <h1>Primitive Tokens Palette</h1>
+        <p>Interactive design token viewer for development.</p>
+    </header>
+
+    <main>
+        <h2>Monochrome</h2>
+        <section class="color-grid">
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--monochrome-100);">100</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--monochrome-200);">200</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--monochrome-300);">300</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--monochrome-400);">400</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--monochrome-500);">500</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--monochrome-600);">600</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--monochrome-700);">700</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--monochrome-800);">800</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--monochrome-900);">900</div>
+            </div>
+        </section>
+
+        <h2>Primary</h2>
+        <section class="color-grid">
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--primary-100);">100</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--primary-200);">200</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--primary-300);">300</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--primary-400);">400</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--primary-500);">500</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--primary-600);">600</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--primary-700);">700</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--primary-800);">800</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--primary-900);">900</div>
+            </div>
+        </section>
+
+        <h2>Accent</h2>
+        <section class="color-grid">
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--accent-100);">100</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--accent-200);">200</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--accent-300);">300</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--accent-400);">400</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--accent-500);">500</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--accent-600);">600</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--accent-700);">700</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--accent-800);">800</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--accent-900);">900</div>
+            </div>
+        </section>
+
+        <h2>Neutral</h2>
+        <section class="color-grid">
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--neutral-100);">100</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--neutral-200);">200</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--neutral-300);">300</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-dark" style="background-color: var(--neutral-400);">400</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--neutral-500);">500</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--neutral-600);">600</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--neutral-700);">700</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--neutral-800);">800</div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-display text-light" style="background-color: var(--neutral-900);">900</div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
