@@ -2,9 +2,14 @@
     "Divider: Section Header (80 Cols)": {
         "prefix": "Divider Section Header",
         "body": [
+            "",
+            "",
+            "",
             "${BLOCK_COMMENT_START}",
             "\t${1:SECTION HEADER}",
             "\t---------------------------------------------------------------------------- ${BLOCK_COMMENT_END}",
+            "",
+            "",
             "$0"
         ],
         "description": "Inserts a standardized 80-column section header comment for code organization."
