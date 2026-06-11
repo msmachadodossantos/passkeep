@@ -1,0 +1,26 @@
+// Code Snippet Refactoring
+// The optimization of code snippet components requires a systematic approach focused on functional clarity and structural integrity. The primary title must be condensed into a nominal phrase that accurately reflects the body content, strictly adhering to a five-word limit. Regarding the description, it must provide a comprehensive analysis of the functionality's underlying motivations, specifying the appropriate contexts and methodologies for its implementation.
+// Prefix taxonomy shall follow a standardized format, beginning with the term insert followed by a keyword representing the snippet’s core function. Should there be a terminological discrepancy between the descriptive term and the associated HTML element, both must be included in the naming convention (e.g., insert descriptiveWord - htmlElementName). Finally, the entirety of the script must be authored in EN-US to maintain international technical consistency.
+{
+    "Middle Tree Item Structure": {
+        "prefix": "insert middleTreeItem",
+        "body": [
+            "${1|├── ,│   ├── ,│   │   ├── ,│   │   │   ├── ,│   │   │   │   ├── ,│   │   │   │   │   ├── ,│   │   │   │   │   │   ├── ,│   │   │   │   │   │   │   ├── |}${2:item_description}"
+        ],
+        "description": "This snippet facilitates the hierarchical visualization of directory structures by inserting a non-terminal node. It is designed for documentation and README files where a visual representation of file systems is required. The implementation utilizes a choice-based input for recursion depth (up to level 8), ensuring consistent alignment with the Unicode box-drawing characters for intermediate branches."
+    },
+    "Terminal Tree Item Structure": {
+        "prefix": "insert terminalTreeItem",
+        "body": [
+            "${1|└── ,│   └── ,│   │   └── ,│   │   │   └── ,│   │   │   │   └── ,│   │   │   │   │   └── ,│   │   │   │   │   │   └── ,│   │   │   │   │   │   │   └── |}${2:item_description}"
+        ],
+        "description": "Used to denote the conclusion of a specific branch within a plain-text architectural map. This snippet should be deployed when the subsequent line represents a sibling directory or a return to a parent scope. It employs specific terminal glyphs to maintain structural integrity and visual flow in technical documentation, supporting multi-level nesting through pre-defined indentation strings."
+    },
+    "Root Tree Directory Path": {
+        "prefix": "insert rootTreeDirectory",
+        "body": [
+            "${1:project_root}"
+        ],
+        "description": "Initiates the structural schema by defining the primary entry point of the hierarchy. This snippet establishes the semantic baseline for all subsequent child nodes, ensuring the top-level naming convention is followed by a trailing slash to differentiate directories from terminal files in a text-based environment."
+    }
+}

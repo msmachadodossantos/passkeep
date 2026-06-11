@@ -1,0 +1,30 @@
+{
+    "context": {
+        "fileName": [
+            "AGENTS.md",
+            "CONTEXT.md",
+            "GEMINI.md"
+        ]
+    },
+    "cloudcode.gemini.enable": true,
+    "cloudcode.gemini.showInlineSuggestions": true,
+    "editor.inlineSuggest.enabled": true,
+    "geminicodeassist.updateChannel": "Insiders",
+    "editor.cursorStyle": "block",
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "[css]": {},
+    "[javascript]": {},
+    "[html]": {},
+    "[markdown]": {
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            "strings": true
+        },
+        "editor.snippetSuggestions": "top"
+    },
+    "[php]": {},
+    "[python]": {},
+    "[typescript]": {}
+}

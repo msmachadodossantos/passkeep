@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "rootDir": "src/asset/ts",
+        "outDir": "src/asset/js",
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "sourceMap": false,
+        "target": "ESNext",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        "strict": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "src/asset/ts/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "src/asset/ts/**/*.min.ts",
+        "src/asset/ts/**/*.map"
+    ]
+}

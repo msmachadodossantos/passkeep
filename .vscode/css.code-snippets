@@ -1,0 +1,49 @@
+// Code Snippet Refactoring
+// The optimization of code snippet components requires a systematic approach focused on functional clarity and structural integrity. The primary title must be condensed into a nominal phrase that accurately reflects the body content, strictly adhering to a five-word limit. Regarding the description, it must provide a comprehensive analysis of the functionality's underlying motivations, specifying the appropriate contexts and methodologies for its implementation.
+// Prefix taxonomy shall follow a standardized format, beginning with the term insert followed by a keyword representing the snippet’s core function. Should there be a terminological discrepancy between the descriptive term and the associated HTML element, both must be included in the naming convention (e.g., insert descriptiveWord - htmlElementName). Finally, the entirety of the script must be authored in EN-US to maintain international technical consistency.
+{
+  "CSS Selector Dark Mode Structure": {
+    "prefix": "insert cssSelector - cssElement",
+    "scope": "css",
+    "body": [
+      "${1:selector} {",
+      "\t$2",
+      "}",
+      "",
+      "@media (prefers-color-scheme: dark) {",
+      "\t${1:selector} {",
+      "\t\t$3",
+      "\t}",
+      "}"
+    ],
+    "description": "This component orchestrates the simultaneous declaration of standard UI states and their respective dark-theme overrides through the 'prefers-color-scheme' media feature. It is designed to ensure accessibility and design consistency across operating system themes by encapsulating both light and dark variants within a unified logical block, streamlining the maintenance of adaptive color systems."
+  },
+  "Insert Standard Media Query Breakpoints": {
+    "prefix": "insert mediaQueries - css",
+    "body": [
+      "/* Mobile */",
+      "$1",
+      "",
+      "/* Tablet */",
+      "@media screen and (min-width: 768px) {",
+      "\t$2",
+      "}",
+      "",
+      "/* Workstation */",
+      "@media screen and (min-width: 1280px) {",
+      "\t$3",
+      "}",
+      "",
+      "/* Ultra */",
+      "@media screen and (min-width: 2048px) {",
+      "\t$4",
+      "}",
+      "",
+      "/* Print */",
+      "@media print {",
+      "\t$5",
+      "}"
+    ],
+    "description": "This snippet implements a mobile-first responsive architecture by establishing a structured hierarchy of media query breakpoints. It facilitates progressive enhancement methodology, allowing developers to layer layout complexity starting from mobile base styles up to ultra-wide and print-specific contexts, ensuring cross-device visual consistency and optimized rendering performance."
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "name": "passkeep",
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "draw-puml": "java -jar plantuml-mit-1.2026.1.jar \"**/*.puml\"",
+        "gen-ts-d-files": "npx tsc --project tsconfig.json",
+        "build:css": "node scripts/build-css.mjs",
+        "build:ts": "node scripts/build-ts.mjs",
+        "deploy:asset": "node scripts/deploy-asset.mjs",
+        "deploy:twbsBootstrapV538": "node scripts/deploy-twbs-boostrap-v538.mjs",
+        "deploy:twbsIconsV1131": "node scripts/deploy-twbs-icons-v1131.mjs"
+    },
+    "devDependencies": {
+        "@swc/cli": "^0.7.10",
+        "@swc/core": "^1.15.10",
+        "browserslist": "^4.24.0",
+        "glob": "^13.0.6",
+        "lightningcss": "^1.31.1",
+        "typescript": "^6.0.2"
+    }
+}

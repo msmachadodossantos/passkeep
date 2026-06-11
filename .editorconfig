@@ -1,0 +1,58 @@
+# EditorConfig is awesome: https://editorconfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+
+[*.css]
+# indent_size:
+# tab_width:
+# end_of_line:
+# charset:
+# trim_trailing_whitespace:
+# insert_final_newline:
+
+[*.{js,ts}]
+# indent_size:
+# tab_width:
+# end_of_line:
+# charset:
+# trim_trailing_whitespace:
+# insert_final_newline:
+
+[*.html]
+# indent_size:
+# tab_width:
+# end_of_line:
+# charset:
+# trim_trailing_whitespace:
+# insert_final_newline:
+
+[*.md]
+# indent_size:
+# tab_width:
+# end_of_line:
+# charset:
+# trim_trailing_whitespace:
+# insert_final_newline:
+
+[*.php]
+# indent_size:
+# tab_width:
+# end_of_line:
+# charset:
+# trim_trailing_whitespace:
+# insert_final_newline:
+
+[*.py]
+# indent_size:
+# tab_width:
+# end_of_line:
+# charset:
+# trim_trailing_whitespace:
+# insert_final_newline:

@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "googlecloudtools.cloudcode",
+    "google.geminicodeassist",
+    "google.gemini-cli-vscode-ide-companion",
+    "gruntfuggly.todo-tree",
+    "ms-vscode-remote.remote-containers"
+  ]
+}
