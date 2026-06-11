@@ -1,0 +1,271 @@
+/**
+ * @file colors.css
+ * @brief Dynamic HSL color-theming palette based on Portuguese holidays, seasons, and events.
+ * @note Generates full monochrome, primary, accent, and neutral scales (100-900) automatically.
+ */
+
+:root {
+    /* Default / Fallback Theme */
+    --primary-hue: 235;
+    --primary-sat: 43%;
+
+    --accent-hue: 137;
+    --accent-sat: 42%;
+
+    --neutral-hue: 47;
+    --neutral-sat: 43%;
+}
+
+
+
+/*
+    SPECIFIC EVENTS AND HOLIDAYS (International & Portuguese National Holidays)
+    ---------------------------------------------------------------------------- */
+
+
+/* New Year's Day (Ano Novo) */
+.theme-new-year {
+    --primary-hue: 168;
+    --primary-sat: 75%;
+    --accent-hue: 48;
+    --accent-sat: 88%;
+    --neutral-hue: 209;
+    --neutral-sat: 11%;
+}
+
+/* Liberty Day (Dia da Liberdade - April 25th) */
+.theme-liberty-day {
+    --primary-hue: 6;
+    --primary-sat: 63%;
+    --accent-hue: 145;
+    --accent-sat: 63%;
+    --neutral-hue: 180;
+    --neutral-sat: 8%;
+}
+
+/* Labor Day (Dia do Trabalhador - May 1st) */
+.theme-labor-day {
+    --primary-hue: 24;
+    --primary-sat: 100%;
+    --accent-hue: 204;
+    --accent-sat: 64%;
+    --neutral-hue: 184;
+    --neutral-sat: 6%;
+}
+
+/* Portugal Day (Dia de Portugal, de Camões e das Comunidades Portuguesas - June 10th) */
+.theme-portugal-day {
+    --primary-hue: 0;
+    --primary-sat: 68%;
+    --accent-hue: 41;
+    --accent-sat: 79%;
+    --neutral-hue: 129;
+    --neutral-sat: 37%;
+}
+
+/* Republic Implantation (Implantação da República - October 5th) */
+.theme-republic-day {
+    --primary-hue: 145;
+    --primary-sat: 53%;
+    --accent-hue: 0;
+    --accent-sat: 77%;
+    --neutral-hue: 44;
+    --neutral-sat: 79%;
+}
+
+/* Restoration of Independence (Restauração da Independência - December 1st) */
+.theme-independence-restoration {
+    --primary-hue: 213;
+    --primary-sat: 51%;
+    --accent-hue: 39;
+    --accent-sat: 71%;
+    --neutral-hue: 0;
+    --neutral-sat: 55%;
+}
+
+/* Good Friday (Sexta-feira Santa) */
+.theme-good-friday {
+    --primary-hue: 283;
+    --primary-sat: 34%;
+    --accent-hue: 0;
+    --accent-sat: 57%;
+    --neutral-hue: 70;
+    --neutral-sat: 29%;
+}
+
+/* Easter Sunday (Domingo de Páscoa) */
+.theme-easter {
+    --primary-hue: 41;
+    --primary-sat: 79%;
+    --accent-hue: 282;
+    --accent-sat: 44%;
+    --neutral-hue: 127;
+    --neutral-sat: 36%;
+}
+
+/* Corpus Christi (Corpo de Deus) */
+.theme-corpus-christi {
+    --primary-hue: 39;
+    --primary-sat: 70%;
+    --accent-hue: 353;
+    --accent-sat: 57%;
+    --neutral-hue: 141;
+    --neutral-sat: 31%;
+}
+
+/* Assumption of Mary (Assunção de Nossa Senhora - August 15th) */
+.theme-assumption-day {
+    --primary-hue: 217;
+    --primary-sat: 50%;
+    --accent-hue: 38;
+    --accent-sat: 77%;
+    --neutral-hue: 0;
+    --neutral-sat: 49%;
+}
+
+/* All Saints' Day (Dia de Todos os Santos - November 1st) */
+.theme-all-saints {
+    --primary-hue: 14;
+    --primary-sat: 52%;
+    --accent-hue: 40;
+    --accent-sat: 75%;
+    --neutral-hue: 137;
+    --neutral-sat: 19%;
+}
+
+/* Immaculate Conception (Imaculada Conceição - December 8th) */
+.theme-immaculate-conception {
+    --primary-hue: 222;
+    --primary-sat: 84%;
+    --accent-hue: 43;
+    --accent-sat: 78%;
+    --neutral-hue: 347;
+    --neutral-sat: 47%;
+}
+
+/* Christmas (Natal - December 25th) */
+.theme-christmas {
+    --primary-hue: 0;
+    --primary-sat: 65%;
+    --accent-hue: 43;
+    --accent-sat: 82%;
+    --neutral-hue: 137;
+    --neutral-sat: 39%;
+}
+
+/* Carnival Tuesday (Terça-feira de Carnaval) */
+.theme-carnival {
+    --primary-hue: 330;
+    --primary-sat: 65%;
+    --accent-hue: 47;
+    --accent-sat: 87%;
+    --neutral-hue: 146;
+    --neutral-sat: 50%;
+}
+
+
+
+/*
+    SEASONS (Estações do Ano)
+    ---------------------------------------------------------------------------- */
+
+
+.theme-spring {
+    --primary-hue: 128;
+    --primary-sat: 36%;
+    --accent-hue: 338;
+    --accent-sat: 64%;
+    --neutral-hue: 45;
+    --neutral-sat: 78%;
+}
+
+.theme-summer {
+    --primary-hue: 42;
+    --primary-sat: 83%;
+    --accent-hue: 220;
+    --accent-sat: 83%;
+    --neutral-hue: 24;
+    --neutral-sat: 100%;
+}
+
+.theme-autumn {
+    --primary-hue: 17;
+    --primary-sat: 74%;
+    --accent-hue: 39;
+    --accent-sat: 71%;
+    --neutral-hue: 113;
+    --neutral-sat: 22%;
+}
+
+.theme-winter {
+    --primary-hue: 203;
+    --primary-sat: 48%;
+    --accent-hue: 28;
+    --accent-sat: 80%;
+    --neutral-hue: 353;
+    --neutral-sat: 38%;
+}
+
+
+
+/*
+    AUTOMATIC COLOR SCALE GENERATION
+    ---------------------------------------------------------------------------- */
+
+
+:root,
+[class*="theme-"] {
+    /* Monochrome Scale Configuration */
+    --monochrome-hue: var(--primary-hue);
+    --monochrome-sat: 5%;
+
+    /* Monochrome Shades */
+    --monochrome-100: hsl(var(--monochrome-hue), var(--monochrome-sat), 95%);
+    --monochrome-200: hsl(var(--monochrome-hue), var(--monochrome-sat), 85%);
+    --monochrome-300: hsl(var(--monochrome-hue), var(--monochrome-sat), 75%);
+    --monochrome-400: hsl(var(--monochrome-hue), var(--monochrome-sat), 62%);
+    --monochrome-500: hsl(var(--monochrome-hue), var(--monochrome-sat), 50%);
+    --monochrome-600: hsl(var(--monochrome-hue), var(--monochrome-sat), 40%);
+    --monochrome-700: hsl(var(--monochrome-hue), var(--monochrome-sat), 30%);
+    --monochrome-800: hsl(var(--monochrome-hue), var(--monochrome-sat), 20%);
+    --monochrome-900: hsl(var(--monochrome-hue), var(--monochrome-sat), 10%);
+
+    /* Primary Scale */
+    --primary-100: hsl(var(--primary-hue), var(--primary-sat), 95%);
+    --primary-200: hsl(var(--primary-hue), var(--primary-sat), 85%);
+    --primary-300: hsl(var(--primary-hue), var(--primary-sat), 75%);
+    --primary-400: hsl(var(--primary-hue), var(--primary-sat), 62%);
+    --primary-500: hsl(var(--primary-hue), var(--primary-sat), 50%);
+    --primary-600: hsl(var(--primary-hue), var(--primary-sat), 40%);
+    --primary-700: hsl(var(--primary-hue), var(--primary-sat), 30%);
+    --primary-800: hsl(var(--primary-hue), var(--primary-sat), 20%);
+    --primary-900: hsl(var(--primary-hue), var(--primary-sat), 10%);
+
+    /* Accent Scale */
+    --accent-100: hsl(var(--accent-hue), var(--accent-sat), 95%);
+    --accent-200: hsl(var(--accent-hue), var(--accent-sat), 85%);
+    --accent-300: hsl(var(--accent-hue), var(--accent-sat), 75%);
+    --accent-400: hsl(var(--accent-hue), var(--accent-sat), 62%);
+    --accent-500: hsl(var(--accent-hue), var(--accent-sat), 50%);
+    --accent-600: hsl(var(--accent-hue), var(--accent-sat), 40%);
+    --accent-700: hsl(var(--accent-hue), var(--accent-sat), 30%);
+    --accent-800: hsl(var(--accent-hue), var(--accent-sat), 20%);
+    --accent-900: hsl(var(--accent-hue), var(--accent-sat), 10%);
+
+    /* Neutral Scale */
+    --neutral-100: hsl(var(--neutral-hue), var(--neutral-sat), 95%);
+    --neutral-200: hsl(var(--neutral-hue), var(--neutral-sat), 85%);
+    --neutral-300: hsl(var(--neutral-hue), var(--neutral-sat), 75%);
+    --neutral-400: hsl(var(--neutral-hue), var(--neutral-sat), 62%);
+    --neutral-500: hsl(var(--neutral-hue), var(--neutral-sat), 50%);
+    --neutral-600: hsl(var(--neutral-hue), var(--neutral-sat), 40%);
+    --neutral-700: hsl(var(--neutral-hue), var(--neutral-sat), 30%);
+    --neutral-800: hsl(var(--neutral-hue), var(--neutral-sat), 20%);
+    --neutral-900: hsl(var(--neutral-hue), var(--neutral-sat), 10%);
+}
+
+
+
+/*
+    SEMANTIC TOKENS (Ready for implementation)
+    ---------------------------------------------------------------------------- */
