@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="asset/css/colors.css">
-
-
 <!DOCTYPE html>
 <html lang="pt-PT">
 
@@ -16,17 +13,58 @@
             color: var(--neutral-900);
             margin: 0;
             padding: 2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         header {
             margin-bottom: 3rem;
             border-bottom: 2px solid var(--neutral-200);
-            padding-bottom: 1rem;
+            padding-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
-        h1 {
+        .header-title h1 {
             margin: 0 0 0.5rem 0;
             color: var(--primary-900);
+        }
+
+        .header-title p {
+            margin: 0;
+            color: var(--neutral-600);
+        }
+
+        .theme-selector-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .theme-selector-container label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--neutral-700);
+        }
+
+        .theme-dropdown {
+            padding: 0.6rem 2rem 0.6rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--neutral-300);
+            border-radius: 6px;
+            background-color: var(--monochrome-100);
+            color: var(--neutral-900);
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .theme-dropdown:focus {
+            border-color: var(--primary-500);
         }
 
         h2 {
@@ -51,6 +89,11 @@
             display: flex;
             flex-direction: column;
             height: 120px;
+            transition: transform 0.2s ease;
+        }
+
+        .color-swatch:hover {
+            transform: translateY(-2px);
         }
 
         .color-display {
@@ -72,11 +115,42 @@
     </style>
 </head>
 
-<body class="">
+<body>
 
     <header>
-        <h1>Primitive Tokens Palette</h1>
-        <p>Interactive design token viewer for development.</p>
+        <div class="header-title">
+            <h1>Primitive Tokens Palette</h1>
+            <p>Interactive design token viewer for development.</p>
+        </div>
+
+        <div class="theme-selector-container">
+            <label for="themeSelector">Active Theme Context</label>
+            <select id="themeSelector" class="theme-dropdown">
+                <option value="">Default Palette</option>
+                <optgroup label="Holidays & Events">
+                    <option value="theme-new-year">New Year's Day (Ano Novo)</option>
+                    <option value="theme-carnival">Carnival Tuesday (Entrudo)</option>
+                    <option value="theme-good-friday">Good Friday (Sexta-Feira Santa)</option>
+                    <option value="theme-easter">Easter Sunday (Páscoa)</option>
+                    <option value="theme-liberty-day">Liberty Day (25 de Abril)</option>
+                    <option value="theme-labor-day">Labor Day (1 de Maio)</option>
+                    <option value="theme-corpus-christi">Corpus Christi (Corpo de Deus)</option>
+                    <option value="theme-portugal-day">Portugal Day (10 de Junho)</option>
+                    <option value="theme-assumption-day">Assumption Day (15 de Agosto)</option>
+                    <option value="theme-republic-day">Republic Day (5 de Outubro)</option>
+                    <option value="theme-all-saints">All Saints' Day (1 de Novembro)</option>
+                    <option value="theme-independence-restoration">Independence Restoration (1 de Dezembro)</option>
+                    <option value="theme-immaculate-conception">Immaculate Conception (8 de Dezembro)</option>
+                    <option value="theme-christmas">Christmas (Natal)</option>
+                </optgroup>
+                <optgroup label="Seasons">
+                    <option value="theme-spring">Spring (Primavera)</option>
+                    <option value="theme-summer">Summer (Verão)</option>
+                    <option value="theme-autumn">Autumn (Outono)</option>
+                    <option value="theme-winter">Winter (Inverno)</option>
+                </optgroup>
+            </select>
+        </div>
     </header>
 
     <main>
@@ -205,6 +279,22 @@
         </section>
     </main>
 
+    <script>
+        const themeSelector = document.getElementById('themeSelector');
+        const body = document.body;
+
+        themeSelector.addEventListener('change', (e) => {
+            // Remove any previous theme class attached to body
+            const currentThemes = Array.from(body.classList).filter(c => c.startsWith('theme-'));
+            currentThemes.forEach(t => body.classList.remove(t));
+
+            // Inject the newly selected theme context if it exists
+            const selectedTheme = e.target.value;
+            if (selectedTheme) {
+                body.classList.add(selectedTheme);
+            }
+        });
+    </script>
 </body>
 
 </html>
