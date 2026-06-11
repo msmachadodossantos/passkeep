@@ -1,1 +1,0 @@
-{"version":3,"sourceRoot":null,"mappings":"","sources":["src/asset/css/test.css"],"sourcesContent":["/* Mobile */\n\n\n/* Tablet */\n@media screen and (min-width: 768px) {}\n\n/* Workstation */\n@media screen and (min-width: 1280px) {}\n\n/* Ultra */\n@media screen and (min-width: 2048px) {}\n\n/* Print */\n@media print {}"],"names":[]}
