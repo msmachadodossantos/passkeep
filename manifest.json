@@ -1,11 +1,13 @@
 {
+  "id": "/passkeep/",
   "name": "PassKeep",
   "short_name": "PassKeep",
-  "description": "Guarde as suas palavras-passe de forma segura offline.",
+  "description": "Guarde as suas palavras-passe de forma segura no seu dispositivo.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#F2F6FA",
   "theme_color": "#F27565",
+  "categories": ["productivity", "utilities"],
   "icons": [
     {
       "src": "icon-192.png",
@@ -15,7 +17,8 @@
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
