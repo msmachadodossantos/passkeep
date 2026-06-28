@@ -106,17 +106,21 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label" data-i18n="labelSite">Site/App</label>
-                        <input type="text" id="view-site" class="form-control" readonly dir="auto">
+                        <input type="text" id="view-site" class="form-control bg-light" readonly dir="auto">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" data-i18n="labelId">ID/Email</label>
-                        <input type="text" id="view-id" class="form-control" readonly dir="auto">
+                        <input type="text" id="view-id" class="form-control bg-light" readonly dir="auto">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" data-i18n="labelLastUpdated">Last Updated</label>
+                        <input type="text" id="view-last-updated" class="form-control bg-light" readonly dir="auto">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" data-i18n="labelPassword">Password</label>
 
                         <div class="input-group" dir="ltr">
-                            <input type="text" id="view-password" class="form-control" readonly>
+                            <input type="text" id="view-password" class="form-control bg-light" readonly>
                             <button class="btn btn-outline-secondary" type="button" id="btn-copy-password"
                                 onclick="copyPasswordToClipboard()" title="Copy Password">
                                 <i class="bi bi-clipboard"></i>
@@ -125,7 +129,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" data-i18n="labelNotes">Notes</label>
-                        <textarea id="view-notes" class="form-control" rows="3" readonly dir="auto"></textarea>
+                        <textarea id="view-notes" class="form-control bg-light" rows="3" readonly dir="auto"></textarea>
                     </div>
                 </div>
             </div>
@@ -175,8 +179,8 @@
 
     <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content border-0">
+                <div class="modal-header text-bg-danger">
                     <h5 class="modal-title" data-i18n="deleteAccountTitle">Delete Account</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
@@ -196,300 +200,139 @@
         </div>
     </div>
 
+    <div class="modal fade" id="alertModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header text-bg-warning">
+                    <h5 class="modal-title text-dark"><i class="bi bi-exclamation-triangle-fill me-2"></i><span
+                            data-i18n="alertTitle">Atenção</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <p id="alert-message" class="mb-0 fs-5"></p>
+                </div>
+                <div class="modal-footer justify-content-center border-0 pb-4">
+                    <button type="button" class="btn btn-dark px-4" data-bs-dismiss="modal"
+                        data-i18n="btnOk">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        /**
+         * Exibe um alerta usando o modal do Bootstrap com suporte a i18n
+         * @param {string} i18nKey - A chave do dicionário para a mensagem de erro
+         */
+        function showAppAlert(i18nKey) {
+            const dictionary = i18n[currentLang] || i18n["en-US"];
+            // Procura a tradução da mensagem. Se não encontrar a chave, mostra o texto que foi passado
+            const message = dictionary[i18nKey] || i18nKey;
+
+            document.getElementById("alert-message").innerText = message;
+
+            // Instancia e mostra o modal
+            const alertModal = new bootstrap.Modal(document.getElementById("alertModal"));
+            alertModal.show();
+        }
+
+
+
+        /**
+         * Retorna a data atual no formato YYYY/MM/DD - HH:MM:SS
+         * @returns {string}
+         */
+        function getCurrentFormattedDate() {
+            const now = new Date();
+            const pad = num => String(num).padStart(2, '0');
+
+            const year = now.getFullYear();
+            const month = pad(now.getMonth() + 1);
+            const day = pad(now.getDate());
+            const hours = pad(now.getHours());
+            const minutes = pad(now.getMinutes());
+            const seconds = pad(now.getSeconds());
+
+            return `${year}/${month}/${day} - ${hours}:${minutes}:${seconds}`;
+        }
+
+
+
+
+
         /**
          * Dictionary object containing all localization strings.
          * Restricted to en-US based on project constraints.
          * @type {Object}
          */
         const i18n = {
-            "ar-SA": {
-                _langName: "العربية (المملكة العربية السعودية)",
-                _isRTL: true,
-                welcomeMsg: "مرحباً! قم باستيراد ملف أو إنشاء ملف جديد.",
-                fileNamePlaceholder: "اسم الملف",
-                createNewBtn: "إنشاء",
-                orText: "أو",
-                importBtn: "استيراد ملف (.passkeep)",
-                addAccountBtn: "إضافة حساب",
-                downloadBtn: "تنزيل",
-                viewAccountTitle: "عرض الحساب",
-                editAccountTitle: "تعديل الحساب",
-                deleteAccountTitle: "حذف الحساب",
-                labelSite: "الموقع/التطبيق",
-                labelId: "المعرف/البريد الإلكتروني",
-                labelPassword: "كلمة المرور",
-                labelNotes: "ملاحظات (اختياري)",
-                btnGenerate: "توليد",
-                btnCancel: "إلغاء",
-                btnSave: "حفظ",
-                btnDelete: "حذف الحساب",
-                deleteConfirmMsg: "هل أنت متأكد أنك تريد حذف الحساب التالي؟",
-                emptyList: "لم يتم العثور على حسابات.",
-                searchPlaceholder: "ابحث عن موقع أو بريد إلكتروني...",
-                accountsCountLabel: "حسابات"
-            },
-            "de-DE": {
-                _langName: "Deutsch (Deutschland)",
-                _isRTL: false,
-                welcomeMsg: "Willkommen! Importieren Sie eine Datei oder erstellen Sie eine neue.",
-                fileNamePlaceholder: "Dateiname",
-                createNewBtn: "Erstellen",
-                orText: "ODER",
-                importBtn: "Datei importieren (.passkeep)",
-                addAccountBtn: "Konto hinzufügen",
-                downloadBtn: "Herunterladen",
-                viewAccountTitle: "Konto ansehen",
-                editAccountTitle: "Konto bearbeiten",
-                deleteAccountTitle: "Konto löschen",
-                labelSite: "Website/App",
-                labelId: "ID/E-Mail",
-                labelPassword: "Passwort",
-                labelNotes: "Notizen (optional)",
-                btnGenerate: "Generieren",
-                btnCancel: "Abbrechen",
-                btnSave: "Speichern",
-                btnDelete: "Konto löschen",
-                deleteConfirmMsg: "Sind Sie sicher, dass Sie das folgende Konto löschen möchten?",
-                emptyList: "Keine Konten gefunden.",
-                searchPlaceholder: "Website oder E-Mail suchen...",
-                accountsCountLabel: "Konten"
-            },
             "en-US": {
-                _langName: "English (United States)",
-                _isRTL: false,
-                welcomeMsg: "Welcome! Import a file or create a new one.",
-                fileNamePlaceholder: "File name",
-                createNewBtn: "Create",
-                orText: "OR",
-                importBtn: "Import File (.passkeep)",
-                addAccountBtn: "Add Account",
-                downloadBtn: "Download",
-                viewAccountTitle: "View Account",
-                editAccountTitle: "Edit Account",
-                deleteAccountTitle: "Delete Account",
-                labelSite: "Site/App",
-                labelId: "ID/Email",
-                labelPassword: "Password",
-                labelNotes: "Notes (optional)",
-                btnGenerate: "Generate",
-                btnCancel: "Cancel",
-                btnSave: "Save",
-                btnDelete: "Delete Account",
-                deleteConfirmMsg: "Are you sure you want to delete the following account?",
-                emptyList: "No accounts found.",
-                searchPlaceholder: "Search site or email...",
-                accountsCountLabel: "accounts"
-            },
-            "es-ES": {
-                _langName: "Español (España)",
-                _isRTL: false,
-                welcomeMsg: "¡Bienvenido! Importe un archivo o cree uno nuevo.",
-                fileNamePlaceholder: "Nombre del archivo",
-                createNewBtn: "Crear",
-                orText: "O",
-                importBtn: "Importar archivo (.passkeep)",
-                addAccountBtn: "Añadir cuenta",
-                downloadBtn: "Descargar",
-                viewAccountTitle: "Ver cuenta",
-                editAccountTitle: "Editar cuenta",
-                deleteAccountTitle: "Eliminar cuenta",
-                labelSite: "Sitio/App",
-                labelId: "ID/Email",
-                labelPassword: "Contraseña",
-                labelNotes: "Notas (opcional)",
-                btnGenerate: "Generar",
-                btnCancel: "Cancelar",
-                btnSave: "Guardar",
-                btnDelete: "Eliminar cuenta",
-                deleteConfirmMsg: "¿Está seguro de que desea eliminar la siguiente cuenta?",
-                emptyList: "No se encontraron cuentas.",
-                searchPlaceholder: "Buscar sitio o email...",
-                accountsCountLabel: "cuentas"
-            },
-            "es-419": {
-                _langName: "Español (Latinoamérica)",
-                _isRTL: false,
-                welcomeMsg: "¡Bienvenido! Importa un archivo o crea uno nuevo.",
-                fileNamePlaceholder: "Nombre del archivo",
-                createNewBtn: "Crear",
-                orText: "O",
-                importBtn: "Importar archivo (.passkeep)",
-                addAccountBtn: "Agregar cuenta",
-                downloadBtn: "Descargar",
-                viewAccountTitle: "Ver cuenta",
-                editAccountTitle: "Editar cuenta",
-                deleteAccountTitle: "Eliminar cuenta",
-                labelSite: "Sitio/App",
-                labelId: "ID/Correo",
-                labelPassword: "Contraseña",
-                labelNotes: "Notas (opcional)",
-                btnGenerate: "Generar",
-                btnCancel: "Cancelar",
-                btnSave: "Guardar",
-                btnDelete: "Eliminar cuenta",
-                deleteConfirmMsg: "¿Estás seguro de que deseas eliminar la siguiente cuenta?",
-                emptyList: "No se encontraron cuentas.",
-                searchPlaceholder: "Buscar sitio o correo...",
-                accountsCountLabel: "cuentas"
-            },
-            "fr-FR": {
-                _langName: "Français (France)",
-                _isRTL: false,
-                welcomeMsg: "Bienvenue ! Importez un fichier ou créez-en un nouveau.",
-                fileNamePlaceholder: "Nom du fichier",
-                createNewBtn: "Créer",
-                orText: "OU",
-                importBtn: "Importer un fichier (.passkeep)",
-                addAccountBtn: "Ajouter un compte",
-                downloadBtn: "Télécharger",
-                viewAccountTitle: "Afficher le compte",
-                editAccountTitle: "Modifier le compte",
-                deleteAccountTitle: "Supprimer le compte",
-                labelSite: "Site/Application",
-                labelId: "Identifiant/E-mail",
-                labelPassword: "Mot de passe",
-                labelNotes: "Notes (facultatif)",
-                btnGenerate: "Générer",
-                btnCancel: "Annuler",
-                btnSave: "Enregistrer",
-                btnDelete: "Supprimer le compte",
-                deleteConfirmMsg: "Êtes-vous sûr de vouloir supprimer le compte suivant ?",
-                emptyList: "Aucun compte trouvé.",
-                searchPlaceholder: "Rechercher un site ou un e-mail...",
-                accountsCountLabel: "comptes"
-            },
-            "it-IT": {
-                _langName: "Italiano (Italia)",
-                _isRTL: false,
-                welcomeMsg: "Benvenuto! Importa un file o creane uno nuovo.",
-                fileNamePlaceholder: "Nome del file",
-                createNewBtn: "Crea",
-                orText: "O",
-                importBtn: "Importa file (.passkeep)",
-                addAccountBtn: "Aggiungi account",
-                downloadBtn: "Scarica",
-                viewAccountTitle: "Visualizza account",
-                editAccountTitle: "Modifica account",
-                deleteAccountTitle: "Elimina account",
-                labelSite: "Sito/App",
-                labelId: "ID/Email",
-                labelPassword: "Password",
-                labelNotes: "Note (opzionale)",
-                btnGenerate: "Genera",
-                btnCancel: "Annulla",
-                btnSave: "Salva",
-                btnDelete: "Elimina account",
-                deleteConfirmMsg: "Sei sicuro di voler eliminare il seguente account?",
-                emptyList: "Nessun account trovato.",
-                searchPlaceholder: "Cerca sito o email...",
-                accountsCountLabel: "account"
-            },
-            "ja-JP": {
-                _langName: "日本語 (日本)",
-                _isRTL: false,
-                welcomeMsg: "ようこそ！ファイルをインポートするか、新しく作成してください。",
-                fileNamePlaceholder: "ファイル名",
-                createNewBtn: "作成",
-                orText: "または",
-                importBtn: "ファイルをインポート (.passkeep)",
-                addAccountBtn: "アカウントを追加",
-                downloadBtn: "ダウンロード",
-                viewAccountTitle: "アカウントを表示",
-                editAccountTitle: "アカウントを編集",
-                deleteAccountTitle: "アカウントを削除",
-                labelSite: "サイト/アプリ",
-                labelId: "ID/メールアドレス",
-                labelPassword: "パスワード",
-                labelNotes: "メモ (任意)",
-                btnGenerate: "生成",
-                btnCancel: "キャンセル",
-                btnSave: "保存",
-                btnDelete: "アカウントを削除",
-                deleteConfirmMsg: "以下のアカウントを削除してもよろしいですか？",
-                emptyList: "アカウントが見つかりません。",
-                searchPlaceholder: "サイトやメールアドレスを検索...",
-                accountsCountLabel: "アカウント"
-            },
-            "ko-KR": {
-                _langName: "한국어 (대한민국)",
-                _isRTL: false,
-                welcomeMsg: "환영합니다! 파일을 가져오거나 새 파일을 만드세요.",
-                fileNamePlaceholder: "파일 이름",
-                createNewBtn: "생성",
-                orText: "또는",
-                importBtn: "파일 가져오기 (.passkeep)",
-                addAccountBtn: "계정 추가",
-                downloadBtn: "다운로드",
-                viewAccountTitle: "계정 보기",
-                editAccountTitle: "계정 수정",
-                deleteAccountTitle: "계정 삭제",
-                labelSite: "사이트/앱",
-                labelId: "ID/이메일",
-                labelPassword: "비밀번호",
-                labelNotes: "메모 (선택 사항)",
-                btnGenerate: "생성",
-                btnCancel: "취소",
-                btnSave: "저장",
-                btnDelete: "계정 삭제",
-                deleteConfirmMsg: "다음 계정을 삭제하시겠습니까?",
-                emptyList: "계정을 찾을 수 없습니다.",
-                searchPlaceholder: "사이트 또는 이메일 검색...",
-                accountsCountLabel: "개 계정"
-            },
-            "pt-BR": {
-                _langName: "Português (Brasil)",
-                _isRTL: false,
-                welcomeMsg: "Bem-vindo! Importe um arquivo ou crie um novo.",
-                fileNamePlaceholder: "Nome do arquivo",
-                createNewBtn: "Criar",
-                orText: "OU",
-                importBtn: "Importar Arquivo (.passkeep)",
-                addAccountBtn: "Adicionar Conta",
-                downloadBtn: "Baixar",
-                viewAccountTitle: "Visualizar Conta",
-                editAccountTitle: "Editar Conta",
-                deleteAccountTitle: "Excluir Conta",
-                labelSite: "Site/Aplicativo",
-                labelId: "ID/E-mail",
-                labelPassword: "Senha",
-                labelNotes: "Notas (opcional)",
-                btnGenerate: "Gerar",
-                btnCancel: "Cancelar",
-                btnSave: "Salvar",
-                btnDelete: "Excluir Conta",
-                deleteConfirmMsg: "Tem certeza de que deseja excluir a seguinte conta?",
-                emptyList: "Nenhuma conta encontrada.",
-                searchPlaceholder: "Pesquisar site ou e-mail...",
-                accountsCountLabel: "contas"
+                "_langName": "English (United States)",
+                "_isRTL": false,
+                "welcomeMsg": "Welcome! Import a file or create a new one.",
+                "fileNamePlaceholder": "File name",
+                "createNewBtn": "Create",
+                "orText": "Or",
+                "importBtn": "Import file (.passkeep)",
+                "addAccountBtn": "Add account",
+                "downloadBtn": "Download",
+                "viewAccountTitle": "View account",
+                "editAccountTitle": "Edit account",
+                "deleteAccountTitle": "Delete account",
+                "labelSite": "Site or app",
+                "labelId": "ID or email",
+                "labelLastUpdated": "Last updated",
+                "labelPassword": "Password",
+                "labelNotes": "Notes (optional)",
+                "btnGenerate": "Generate",
+                "btnCancel": "Cancel",
+                "btnSave": "Save",
+                "btnDelete": "Delete account",
+                "deleteConfirmMsg": "Delete this account?",
+                "emptyList": "No accounts found.",
+                "searchPlaceholder": "Search sites or emails",
+                "accountsCountLabel": "accounts",
+                "alertTitle": "Warning",
+                "btnOk": "OK",
+                "errNoFileName": "Enter a file name.",
+                "errInvalidFile": "Couldn't read the file. Make sure it's a valid .passkeep file.",
+                "errEmptyFields": "Enter a site, ID, and password.",
+                "errCopyFailed": "Couldn't copy the password."
             },
             "pt-PT": {
-                _langName: "Português (Portugal)",
-                _isRTL: false,
-                welcomeMsg: "Bem-vindo! Importe um ficheiro ou crie um novo.",
-                fileNamePlaceholder: "Nome do ficheiro",
-                createNewBtn: "Criar",
-                orText: "OU",
-                importBtn: "Importar Ficheiro (.passkeep)",
-                addAccountBtn: "Adicionar Conta",
-                downloadBtn: "Transferir",
-                viewAccountTitle: "Ver Conta",
-                editAccountTitle: "Editar Conta",
-                deleteAccountTitle: "Eliminar Conta",
-                labelSite: "Site/Aplicação",
-                labelId: "ID/E-mail",
-                labelPassword: "Palavra-passe",
-                labelNotes: "Notas (opcional)",
-                btnGenerate: "Gerar",
-                btnCancel: "Cancelar",
-                btnSave: "Guardar",
-                btnDelete: "Eliminar Conta",
-                deleteConfirmMsg: "Tem a certeza de que pretende eliminar a seguinte conta?",
-                emptyList: "Nenhuma conta encontrada.",
-                searchPlaceholder: "Pesquisar site ou e-mail...",
-                accountsCountLabel: "contas"
+                "_langName": "Português (Portugal)",
+                "_isRTL": false,
+                "welcomeMsg": "Bem-vindo. Importe um ficheiro ou crie um novo.",
+                "fileNamePlaceholder": "Nome do ficheiro",
+                "createNewBtn": "Criar",
+                "orText": "Ou",
+                "importBtn": "Importar ficheiro (.passkeep)",
+                "addAccountBtn": "Adicionar conta",
+                "downloadBtn": "Transferir",
+                "viewAccountTitle": "Ver conta",
+                "editAccountTitle": "Editar conta",
+                "deleteAccountTitle": "Eliminar conta",
+                "labelSite": "Site ou aplicação",
+                "labelId": "ID ou e-mail",
+                "labelLastUpdated": "Última atualização",
+                "labelPassword": "Palavra-passe",
+                "labelNotes": "Notas (opcional)",
+                "btnGenerate": "Gerar",
+                "btnCancel": "Cancelar",
+                "btnSave": "Guardar",
+                "btnDelete": "Eliminar conta",
+                "deleteConfirmMsg": "Eliminar esta conta?",
+                "emptyList": "Nenhuma conta encontrada.",
+                "searchPlaceholder": "Pesquisar sites ou e-mails",
+                "accountsCountLabel": "contas",
+                "alertTitle": "Aviso",
+                "btnOk": "OK",
+                "errNoFileName": "Introduza um nome de ficheiro.",
+                "errInvalidFile": "Não foi possível ler o ficheiro. Certifique-se de que é um ficheiro .passkeep válido.",
+                "errEmptyFields": "Introduza um site, ID e palavra-passe.",
+                "errCopyFailed": "Não foi possível copiar a palavra-passe."
             }
         };
 
@@ -572,7 +415,7 @@
         function initializeNewFile() {
             const inputFileName = document.getElementById("new-file-name").value.trim();
             if (!inputFileName) {
-                alert("Please enter a file name.");
+                showAppAlert("errNoFileName");
                 return;
             }
             currentFileName = inputFileName.endsWith('.passkeep') ? inputFileName : inputFileName + ".passkeep";
@@ -597,7 +440,7 @@
                     accountsData = JSON.parse(readEvent.target.result);
                     displayMainSection();
                 } catch (error) {
-                    alert("Error reading file. Ensure it is a valid .passkeep file.");
+                    showAppAlert("errInvalidFile");
                 }
             };
             fileReader.readAsText(targetFile);
@@ -680,14 +523,28 @@
 
                 let alertHtmlString = "";
                 if (account.lastUpdated) {
-                    const daysSinceUpdate = Math.floor((Date.now() - account.lastUpdated) / (1000 * 60 * 60 * 24));
+                    let lastUpdatedTimestamp = account.lastUpdated;
 
+                    // Se for string, preparamos para o Javascript converter de forma nativa
+                    if (typeof account.lastUpdated === "string") {
+                        let safeDateString = account.lastUpdated.replace(" - ", " ");
+                        lastUpdatedTimestamp = new Date(safeDateString).getTime();
+                    }
+
+                    // Calcula os dias. Se por algum motivo a data for inválida (NaN), fallback para 0
+                    if (isNaN(lastUpdatedTimestamp)) {
+                        lastUpdatedTimestamp = Date.now();
+                    }
+
+                    const daysSinceUpdate = Math.floor((Date.now() - lastUpdatedTimestamp) / (1000 * 60 * 60 * 24));
+
+                    // Lógica original para mostrar as bolinhas de aviso
                     if (daysSinceUpdate >= 180) {
                         alertHtmlString = `<span class="badge bg-danger rounded-pill ms-2" title="Updated over 180 days ago"><i class="bi bi-exclamation-triangle"></i></span>`;
                     } else if (daysSinceUpdate >= 90) {
                         alertHtmlString = `<span class="badge bg-warning text-dark rounded-pill ms-2" title="Updated over 90 days ago"><i class="bi bi-clock-history"></i></span>`;
                     }
-                }
+                } // <-- Aqui está a chaveta que faltava!
 
                 const listItemElement = document.createElement("li");
                 listItemElement.className = "list-group-item d-flex justify-content-between align-items-center";
@@ -718,6 +575,7 @@
             document.getElementById("view-id").value = targetAccount.id;
             document.getElementById("view-password").value = targetAccount.password;
             document.getElementById("view-notes").value = targetAccount.notes || "";
+            document.getElementById("view-last-updated").value = targetAccount.lastUpdated || "-";
 
             const copyButtonIcon = document.getElementById("btn-copy-password").querySelector("i");
             copyButtonIcon.className = "bi bi-clipboard";
@@ -744,7 +602,7 @@
                 }, 2000);
             }).catch(error => {
                 console.error("Clipboard copy failed: ", error);
-                alert("Unable to copy password automatically.");
+                showAppAlert("errCopyFailed");
             });
         }
 
@@ -787,7 +645,7 @@
             const notesInput = document.getElementById("edit-notes").value.trim();
 
             if (!siteInput || !idInput || !passwordInput) {
-                alert("Please fill in Site, ID, and Password fields.");
+                showAppAlert("errEmptyFields");
                 return;
             }
 
@@ -796,7 +654,7 @@
                 id: idInput,
                 password: passwordInput,
                 notes: notesInput,
-                lastUpdated: Date.now()
+                lastUpdated: getCurrentFormattedDate()
             };
 
             if (accountIndex === -1) {
